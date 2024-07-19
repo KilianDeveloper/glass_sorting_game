@@ -61,12 +61,19 @@ export const useBottleStore = create<BottleState>((set) => ({
   },
   generateNew: (numberOfBottles) => {
     set(() => {
-      const generatedBottles = generateBottles(
-        5,
-        Math.max(1, Math.floor((2 * numberOfBottles) / 3)),
-        Math.max(1, Math.ceil(numberOfBottles / 3)),
-      );
-      return { bottles: generatedBottles };
+      let generatedBottles: Bottle[] = [];
+      let hasWon = false;
+      do{
+        generatedBottles = generateBottles(
+          5,
+          Math.max(1, Math.floor((2 * numberOfBottles) / 3)),
+          Math.max(1, Math.ceil(numberOfBottles / 3)),
+        );
+        hasWon = generatedBottles.every((bottle) =>
+          isBottleFinished(bottle),
+        );
+      }while(hasWon)
+      return { bottles: generatedBottles, hasWon: false };
     });
   },
 }));
