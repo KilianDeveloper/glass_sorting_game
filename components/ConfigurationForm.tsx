@@ -34,9 +34,7 @@ export default function ConfigurationForm() {
       className="mt-12 flex flex-row items-end gap-4"
       onSubmit={handleSubmit}
     >
-      <label
-        className="text-sm block text-white text-opacity-50"
-      >
+      <label className="text-sm block text-white text-opacity-50">
         Number of Bottles
         <input
           name="number_of_bottles"
